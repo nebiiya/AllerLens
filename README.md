@@ -1,6 +1,6 @@
 # AllerLens
 
-**An Alergen Detector for Ingredient Lists Using the Boyer-Moore String Matching Algorithm**
+**An Allergen Detector for Ingredient Lists Using the Boyer-Moore String Matching Algorithm**
 
 ## 🚀 Objectives
 

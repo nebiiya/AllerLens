@@ -1,0 +1,107 @@
+import json
+import pytesseract
+from PIL import Image
+import re
+
+def load_allergens(filepath):
+    # Loads the static JSON file into a Python dictionary (Hash Map).
+    # Error handling is included to manage potential issues with file access or JSON parsing.
+    try:
+        with open(filepath, 'r') as file:
+            # json.load() converts the JSON into a py dict
+            allergen_hash_map = json.load(file)
+            return allergen_hash_map
+    except FileNotFoundError:
+        print(f"Error: The allergens.json file was not found.")
+        return None
+
+# Load the library 
+allergen_library = load_allergens("allergens.json")
+
+def process_allergen_image(image_path):
+    # Extracts text from an image and cleans it for algorithm processing.
+
+    # 1. Open the image file
+    try:
+        img = Image.open(image_path) # Loads the physical image file from computer into python.
+    except FileNotFoundError:
+        print(f"Error: Image file not found.")
+        return None
+    
+    # 2. Extract raw text using Tesseract 
+    raw_text = pytesseract.image_to_string(img) # Scan the image pixels -> translates to a single, long text string
+
+    # 3. Preprocessing: Clean the text
+    # Convert everything to lowercase for uniformity
+    clean_text = raw_text.lower()
+
+    # Remove punctuation and special characters using regex
+    clean_text = re.sub(r'[^a-z0-9\s]',' ', clean_text) 
+
+    # If there are multiple spaces, reduce into a single space
+    clean_text = re.sub(r'\s+', '', clean_text).strip()
+
+    return clean_text    
+
+# Algorithms Implementation
+def boyer_moore_search(text, pattern):
+    # TO DO: Build the core algorihm logic   
+    # For now, return empty data
+    match_positions = []
+    comparisons = 0
+    return match_positions, comparisons
+
+
+def brute_force_search(text, pattern):
+    # TO DO: Build the baseline algorithm logic 
+    match_positions = []
+    comparisons = 0
+    return match_positions, comparisons 
+
+# Main processing function 
+def analyze_ingredients(clean_text, user_allergens, allergen_db):
+    # Cross references the clean OCR text against the user's allergen profile
+    matches_found = []
+    comparison_stats = {}
+
+    # Loop thru each allergen the user selected 
+    for allergen in user_allergens:
+
+        # Grab the list of aliases from loaded JSON library/database
+        if allergen in allergen_db:
+            aliases = allergen_db[allergen]
+
+            # Search the clean text for each alias using both algorithms
+            for alias in aliases:
+
+                # Boyer-Moore String Matching
+                b_pos, b_comp = boyer_moore_search(clean_text, alias)
+
+                # Brute Force String Matching (for comparison)
+                f_pos, f_comp = brute_force_search(clean_text, alias)
+
+                # If Boyer-Moore found a match, record/add to results dictionary
+                if b_pos: 
+                    matches_found.append({
+                        "allergen": allergen,
+                        "alias_found": alias,
+                        "positions": b_pos
+                    })
+                
+                # Record performance stats to show the user later
+                comparison_stats[alias] ={ 
+                    "boyer_comps": b_comp,
+                    "brute_comps": f_comp
+                }
+
+    # Determine Final Verdict based on findings
+    if matches_found:
+        verdict = "WARNING"
+    else:
+        verdict = "SAFE"
+    
+    return {
+        "verdict": verdict,
+        "matches": matches_found,
+        "stats": comparison_stats
+    }

@@ -44,13 +44,52 @@ def process_allergen_image(image_path):
     return clean_text    
 
 # Algorithms Implementation
+def build_bad_char_table(pattern):
+    # Builds the bad character table for Boyer-Moore algorithm
+    bad_char_table = {}
+     
+    for i in range(len(pattern)): # Store last occurence index of each char in the pattern
+        bad_char_table[pattern[i]] = i
+    return bad_char_table
+
 def boyer_moore_search(text, pattern):
-    # TO DO: Build the core algorihm logic   
-    # For now, return empty data
+    n = len(text)
+    m = len(pattern)
     match_positions = []
     comparisons = 0
-    return match_positions, comparisons
 
+    if m == 0 or n == 0 or m > n:
+        return match_positions, comparisons
+    
+    # Pre-process the pattern to create the bad character table
+    bad_char_table = build_bad_char_table(pattern)
+    shift = 0
+
+    while shift <= (n-m):
+        j = m - 1 # Start comparing from the end of the pattern
+
+        # Right to left comparison
+        while j >= 0:
+            comparisons += 1
+            if pattern[j] != text[shift + j]:
+                break # Mismatch = break the inner loop
+            j -= 1 
+        
+        if j < 0:
+            match_positions.append(shift) # Match found at this position
+
+            # Calculate the shift for the next potential match 
+            if (shift + m) < n :
+                next_char = text[shift + m]
+                shift += m - bad_char_table.get(next_char, -1) # Shift based on the bad character table (-1 if char not found in the table)
+            else:
+                shift += 1
+        else:
+            mismatched_char = text[shift + j]
+            last_occurrence = bad_char_table.get(mismatched_char, -1)
+            shift += max(1, j - last_occurrence) # Shift based on the bad character table
+
+    return match_positions, comparisons
 
 def brute_force_search(text, pattern):
     # TO DO: Build the baseline algorithm logic 

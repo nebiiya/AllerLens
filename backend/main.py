@@ -38,8 +38,8 @@ def process_allergen_image(image_path):
     # Remove punctuation and special characters using regex
     clean_text = re.sub(r'[^a-z0-9\s]',' ', clean_text) 
 
-    # If there are multiple spaces, reduce into a single space
-    clean_text = re.sub(r'\s+', '', clean_text).strip()
+    # If there are multiple spaces, reduce them to a single space
+    clean_text = re.sub(r'\s+', ' ', clean_text).strip()
 
     return clean_text    
 

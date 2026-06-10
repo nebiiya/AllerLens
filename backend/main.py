@@ -62,7 +62,7 @@ def boyer_moore_search(text, pattern):
     if m == 0 or n == 0 or m > n:
         return match_positions, comparisons
     
-    bad_char_table = build_bad_char_table(patten)
+    bad_char_table = build_bad_char_table(pattern)
     shift = 0
 
     while shift <= (n-m):

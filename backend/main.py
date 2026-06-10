@@ -18,6 +18,7 @@ def load_allergens(filepath):
 # Load the library 
 allergen_library = load_allergens("allergens.json")
 
+
 def process_allergen_image(image_path):
     # Extracts text from an image and cleans it for algorithm processing.
 
@@ -60,6 +61,32 @@ def brute_force_search(text, pattern):
 
     # Edge case handling matching your Boyer-Moore logic
     if m == 0 or n == 0 or m > n:
+        return match_positions, comparisons
+    
+    bad_char_table = build_bad_char_table(patten)
+    shift = 0
+
+    while shift <= (n-m):
+        j = m -1 
+
+        while j >= 0:
+            comparisons += 1
+            if pattern[j] != text[shift + j]:
+                break
+            j -= 1
+        
+        if j < 0:
+            match_positions.append(shift)
+            
+            if (shift + m) < n:
+                next_char = text[shift + m]
+                shift += m - bad_char_table.get(next_char, -1)
+            else:
+                shift += 1
+        else:
+            mismatched_char = text[shift + j]
+            last_occurrence = bad_char_table.get(mismatched_char, -1)
+            shift += max(1, j-last_occurrence)
         return match_positions, comparisons 
 
     # Outer loop slides the pattern across the text step-by-step
@@ -80,10 +107,31 @@ def brute_force_search(text, pattern):
     return match_positions, comparisons
 
 def brute_force_search(text, pattern):
-    # TO DO: Build the baseline algorithm logic 
+    n = len(text)
+    m = len(pattern)
     match_positions = []
     comparisons = 0
-    return match_positions, comparisons 
+
+    # Edge case handling matching your Boyer-Moore logic
+    if m == 0 or n == 0 or m > n:
+        return match_positions, comparisons 
+
+    # Outer loop slides the pattern across the text step-by-step
+    for shift in range(n - m + 1):
+        j = 0
+        
+        # Inner loop checks characters from left to right
+        while j < m:
+            comparisons += 1
+            if text[shift + j] != pattern[j]:
+                break  # Mismatch found; stop checking this shift
+            j += 1
+            
+        # If the inner loop finished without breaking, we found a match
+        if j == m:
+            match_positions.append(shift)
+
+    return match_positions, comparisons
 
 # Main processing function 
 def analyze_ingredients(clean_text, user_allergens, allergen_db):

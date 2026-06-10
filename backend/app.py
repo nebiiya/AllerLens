@@ -8,6 +8,7 @@ import uuid
 from main import process_allergen_image, analyze_ingredients, load_allergens 
 
 app = Flask(__name__) # Creates the server app 
+app = Flask(__name__)
 CORS(app) # Allows React Native to connect to this server
 
 # Load database once when server starts
@@ -38,6 +39,12 @@ def scan_label():
 
     # 4. Run the engine
     clean_text = process_allergen_image(unique_filename)
+    # 3. Save the image temporarily so Tesseract can read it
+    temp_image_path = "temp_scan.jpg"
+    file.save(temp_image_path)
+
+    # 4. Run the engine
+    clean_text = process_allergen_image(temp_image_path)
 
     if clean_text:
         # Pass to the traffic controller
@@ -45,6 +52,7 @@ def scan_label():
 
         # Clean up the temporary image
         os.remove(unique_filename)
+        os.remove(temp_image_path)
 
         # Send the JSON verdict back to the mobile app
         return jsonify(final_results), 200
@@ -62,3 +70,11 @@ def scan_label():
 if __name__ == '__main__':
     # Start the local development server
     app.run(debug=True, port=5000)
+        if os.path.exists(temp_image_path):
+            os.remove(temp_image_path)
+        return jsonify({"Error": "Failed to extract text from image"}), 500
+    
+if __name__ == '__main__':
+    # Start the local development server
+    app.run(debug=True, port=5000)
+    

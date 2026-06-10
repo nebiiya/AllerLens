@@ -53,12 +53,13 @@ def build_bad_char_table(pattern):
         bad_char_table[pattern[i]] = i
     return bad_char_table
 
-def boyer_moore_search(text, pattern):
+def brute_force_search(text, pattern):
     n = len(text)
     m = len(pattern)
     match_positions = []
     comparisons = 0
 
+    # Edge case handling matching your Boyer-Moore logic
     if m == 0 or n == 0 or m > n:
         return match_positions, comparisons
     
@@ -86,6 +87,22 @@ def boyer_moore_search(text, pattern):
             mismatched_char = text[shift + j]
             last_occurrence = bad_char_table.get(mismatched_char, -1)
             shift += max(1, j-last_occurrence)
+        return match_positions, comparisons 
+
+    # Outer loop slides the pattern across the text step-by-step
+    for shift in range(n - m + 1):
+        j = 0
+        
+        # Inner loop checks characters from left to right
+        while j < m:
+            comparisons += 1
+            if text[shift + j] != pattern[j]:
+                break  # Mismatch found; stop checking this shift
+            j += 1
+            
+        # If the inner loop finished without breaking, we found a match
+        if j == m:
+            match_positions.append(shift)
 
     return match_positions, comparisons
 

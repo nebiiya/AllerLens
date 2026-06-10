@@ -18,6 +18,7 @@ def load_allergens(filepath):
 # Load the library 
 allergen_library = load_allergens("allergens.json")
 
+
 def process_allergen_image(image_path):
     # Extracts text from an image and cleans it for algorithm processing.
 
@@ -38,8 +39,8 @@ def process_allergen_image(image_path):
     # Remove punctuation and special characters using regex
     clean_text = re.sub(r'[^a-z0-9\s]',' ', clean_text) 
 
-    # If there are multiple spaces, reduce into a single space
-    clean_text = re.sub(r'\s+', '', clean_text).strip()
+    # If there are multiple spaces, reduce them to a single space
+    clean_text = re.sub(r'\s+', ' ', clean_text).strip()
 
     return clean_text    
 
@@ -61,41 +62,59 @@ def boyer_moore_search(text, pattern):
     if m == 0 or n == 0 or m > n:
         return match_positions, comparisons
     
-    # Pre-process the pattern to create the bad character table
-    bad_char_table = build_bad_char_table(pattern)
+    bad_char_table = build_bad_char_table(patten)
     shift = 0
 
     while shift <= (n-m):
-        j = m - 1 # Start comparing from the end of the pattern
+        j = m -1 
 
-        # Right to left comparison
         while j >= 0:
             comparisons += 1
             if pattern[j] != text[shift + j]:
-                break # Mismatch = break the inner loop
-            j -= 1 
+                break
+            j -= 1
         
         if j < 0:
-            match_positions.append(shift) # Match found at this position
-
-            # Calculate the shift for the next potential match 
-            if (shift + m) < n :
+            match_positions.append(shift)
+            
+            if (shift + m) < n:
                 next_char = text[shift + m]
-                shift += m - bad_char_table.get(next_char, -1) # Shift based on the bad character table (-1 if char not found in the table)
+                shift += m - bad_char_table.get(next_char, -1)
             else:
                 shift += 1
         else:
             mismatched_char = text[shift + j]
             last_occurrence = bad_char_table.get(mismatched_char, -1)
-            shift += max(1, j - last_occurrence) # Shift based on the bad character table
+            shift += max(1, j-last_occurrence)
 
     return match_positions, comparisons
 
 def brute_force_search(text, pattern):
-    # TO DO: Build the baseline algorithm logic 
+    n = len(text)
+    m = len(pattern)
     match_positions = []
     comparisons = 0
-    return match_positions, comparisons 
+
+    # Edge case handling matching your Boyer-Moore logic
+    if m == 0 or n == 0 or m > n:
+        return match_positions, comparisons 
+
+    # Outer loop slides the pattern across the text step-by-step
+    for shift in range(n - m + 1):
+        j = 0
+        
+        # Inner loop checks characters from left to right
+        while j < m:
+            comparisons += 1
+            if text[shift + j] != pattern[j]:
+                break  # Mismatch found; stop checking this shift
+            j += 1
+            
+        # If the inner loop finished without breaking, we found a match
+        if j == m:
+            match_positions.append(shift)
+
+    return match_positions, comparisons
 
 # Main processing function 
 def analyze_ingredients(clean_text, user_allergens, allergen_db):

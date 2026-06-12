@@ -59,6 +59,7 @@ def boyer_moore_search(text, pattern):
     match_positions = []
     comparisons = 0
 
+    # Edge case handling matching your Boyer-Moore logic
     if m == 0 or n == 0 or m > n:
         return match_positions, comparisons
     

@@ -26,6 +26,11 @@ allergen_key_map = {key.strip().lower(): key for key in allergen_db.keys()}
 
 @app.route('/scan', methods=['POST'])
 def scan_label():
+    print("\n--- INCOMING PACKAGE DEBUG ---")
+    print("Files received:", request.files)
+    print("Form data received:", request.form)
+    print("------------------------------\n")
+
     unique_filename = None
     temp_path = None 
 
@@ -99,9 +104,9 @@ def scan_label():
 
         response_payload = {
             "success": True,
-            "matches": final_results.get("verdict", "SAFE"),
-            "missed_allergens": final_results.get("matches", []),
-            "false_positives": final_results.get("stats", {})
+            "verdict": final_results.get("verdict", "SAFE"),
+            "matches": final_results.get("matches", []),
+            "stats": final_results.get("stats", {})
         }
 
         # Send the JSON verdict back to the mobile app
@@ -110,7 +115,7 @@ def scan_label():
     except Exception as e:
         return jsonify({
             "success": False,
-            "error": "Server error during allergen scan",
+            "error": f"Crash: {str(e)}" # "Server error during allergen scan"
         }), 500
     finally:
         if temp_path and os.path.exists(temp_path):
@@ -118,4 +123,4 @@ def scan_label():
     
 if __name__ == '__main__':
     # Start the local development server
-    app.run(debug=True, port=5000)
+    app.run(host='0.0.0.0', port=5000, debug=True)

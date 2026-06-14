@@ -7,6 +7,7 @@ frontend/node_modules/
 frontend/build/
 frontend/dist/
 frontend/.env
+frontend/.expo/
 
 # Backend (Python)
 __pycache__/

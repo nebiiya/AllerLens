@@ -1,5 +1,6 @@
 import json
 import pytesseract
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 from PIL import Image
 import re
 
@@ -31,6 +32,10 @@ def process_allergen_image(image_path):
     
     # 2. Extract raw text using Tesseract 
     raw_text = pytesseract.image_to_string(img) # Scan the image pixels -> translates to a single, long text string
+
+    print("\n--- WHAT TESSERACT SEES ---")
+    print(raw_text) # Make sure this matches your actual variable name!
+    print("---------------------------\n")
 
     # 3. Preprocessing: Clean the text
     # Convert everything to lowercase for uniformity

@@ -21,7 +21,11 @@
  *  - detectedAllergens: AllergenId[] — allergens found in the scan
  */
 
+<<<<<<< HEAD
 import React from "react";
+=======
+import React from 'react';
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
 import {
   View,
   Text,
@@ -30,6 +34,7 @@ import {
   StatusBar,
   SafeAreaView,
   ScrollView,
+<<<<<<< HEAD
 } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Colors from "../theme/colors";
@@ -38,10 +43,21 @@ import { RootStackParamList, ALLERGENS } from "../types";
 // ── Props ─────────────────────────────────────────────────────────────────────
 
 type Props = NativeStackScreenProps<RootStackParamList, "WarningResult">;
+=======
+} from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import Colors from '../theme/colors';
+import { RootStackParamList, ALLERGENS } from '../types';
+
+// ── Props ─────────────────────────────────────────────────────────────────────
+
+type Props = NativeStackScreenProps<RootStackParamList, 'WarningResult'>;
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const WarningResultScreen: React.FC<Props> = ({ navigation, route }) => {
+<<<<<<< HEAD
   const { detectedAllergens, stats } = route.params;
 
   // Tally up algorithm stats
@@ -54,6 +70,9 @@ const WarningResultScreen: React.FC<Props> = ({ navigation, route }) => {
       totalBrute += stat.brute_comps || 0;
     });
   }
+=======
+  const { detectedAllergens } = route.params;
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
 
   /**
    * Resolve allergen IDs to full display objects (emoji + label).
@@ -109,9 +128,15 @@ const WarningResultScreen: React.FC<Props> = ({ navigation, route }) => {
         <View style={styles.finePrint}>
           <Text style={styles.finePrintTitle}>Algorithmic Comparisons</Text>
           <Text style={styles.finePrintBody}>
+<<<<<<< HEAD
             {typeof stats == "string"
               ? stats
               : `Boyer-Moore Total: ${totalBoyer} comparisons\nBrute Force Total: ${totalBrute} comparisons`}
+=======
+            Results are based on optical character recognition (OCR) and ingredient
+            matching. Do NOT consume this product if you are sensitive to any
+            of the flagged allergens.
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
           </Text>
         </View>
 
@@ -138,7 +163,11 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.cream,
   },
   container: {
+<<<<<<< HEAD
     alignItems: "center",
+=======
+    alignItems: 'center',
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
     paddingHorizontal: 32,
     paddingTop: 60,
     gap: 18,
@@ -147,7 +176,11 @@ const styles = StyleSheet.create({
   // "ANALYSIS" label
   sectionLabel: {
     fontSize: 20,
+<<<<<<< HEAD
     fontWeight: "700",
+=======
+    fontWeight: '700',
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
     color: Colors.textMuted,
     letterSpacing: 3,
   },
@@ -162,7 +195,11 @@ const styles = StyleSheet.create({
   verdictText: {
     color: Colors.textLight,
     fontSize: 22,
+<<<<<<< HEAD
     fontWeight: "900",
+=======
+    fontWeight: '900',
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
     letterSpacing: 4,
   },
 
@@ -172,34 +209,54 @@ const styles = StyleSheet.create({
     height: 110,
     borderRadius: 55,
     backgroundColor: Colors.warning,
+<<<<<<< HEAD
     alignItems: "center",
     justifyContent: "center",
+=======
+    alignItems: 'center',
+    justifyContent: 'center',
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
     marginVertical: 8,
   },
   iconMark: {
     color: Colors.textLight,
     fontSize: 56,
+<<<<<<< HEAD
     fontWeight: "700",
+=======
+    fontWeight: '700',
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
     lineHeight: 64,
   },
 
   // Result messages
   resultTitle: {
     fontSize: 22,
+<<<<<<< HEAD
     fontWeight: "700",
     color: Colors.warning,
     textAlign: "center",
+=======
+    fontWeight: '700',
+    color: Colors.warning,
+    textAlign: 'center',
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
     letterSpacing: 0.5,
   },
   resultSubtitle: {
     fontSize: 14,
     color: Colors.textMuted,
+<<<<<<< HEAD
     textAlign: "center",
+=======
+    textAlign: 'center',
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
     lineHeight: 20,
   },
 
   // Detected allergen chips
   allergenChipsContainer: {
+<<<<<<< HEAD
     flexDirection: "row",
     flexWrap: "wrap",
     gap: 8,
@@ -209,6 +266,17 @@ const styles = StyleSheet.create({
   allergenChip: {
     flexDirection: "row",
     alignItems: "center",
+=======
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    justifyContent: 'center',
+    width: '100%',
+  },
+  allergenChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
     backgroundColor: Colors.warning,
     paddingHorizontal: 12,
     paddingVertical: 7,
@@ -221,11 +289,16 @@ const styles = StyleSheet.create({
   chipLabel: {
     color: Colors.textLight,
     fontSize: 13,
+<<<<<<< HEAD
     fontWeight: "600",
+=======
+    fontWeight: '600',
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
   },
 
   // Fine print
   finePrint: {
+<<<<<<< HEAD
     backgroundColor: "rgba(0,0,0,0.05)",
     borderRadius: 10,
     padding: 14,
@@ -235,6 +308,17 @@ const styles = StyleSheet.create({
   finePrintTitle: {
     fontSize: 13,
     fontWeight: "700",
+=======
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    borderRadius: 10,
+    padding: 14,
+    marginTop: 4,
+    width: '100%',
+  },
+  finePrintTitle: {
+    fontSize: 13,
+    fontWeight: '700',
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
     color: Colors.textMuted,
     marginBottom: 4,
     letterSpacing: 0.5,
@@ -256,7 +340,11 @@ const styles = StyleSheet.create({
   backText: {
     color: Colors.textLight,
     fontSize: 16,
+<<<<<<< HEAD
     fontWeight: "700",
+=======
+    fontWeight: '700',
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
   },
 });
 

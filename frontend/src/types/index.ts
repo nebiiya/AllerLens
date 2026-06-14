@@ -12,6 +12,7 @@
  * These match the checkboxes shown on the "Create Your Allergen Profile" screen.
  */
 export type AllergenId =
+<<<<<<< HEAD
   | 'milk'
   | 'peanuts'
   | 'eggs'
@@ -21,6 +22,15 @@ export type AllergenId =
   | 'fish'
   | 'tree nuts'
   | 'Crustacean shellfish';
+=======
+  | 'crustacean_shellfish'
+  | 'egg'
+  | 'fish'
+  | 'peanut'
+  | 'soybean'
+  | 'tree_nuts'
+  | 'wheat';
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
 
 /**
  * Display metadata for each allergen.
@@ -34,6 +44,7 @@ export interface Allergen {
 
 /** Full list of supported allergens with their display data */
 export const ALLERGENS: Allergen[] = [
+<<<<<<< HEAD
   { id: 'milk',                 label: 'Milk',                 emoji: '🥛' },
   { id: 'Crustacean shellfish', label: 'Crustacean Shellfish', emoji: '🦐' },
   { id: 'eggs',                 label: 'Egg',                  emoji: '🥚' },
@@ -41,6 +52,14 @@ export const ALLERGENS: Allergen[] = [
   { id: 'peanuts',              label: 'Peanut',               emoji: '🥜' },
   { id: 'soybeans',             label: 'Soybean',              emoji: '🫘' },
   { id: 'tree nuts',            label: 'Tree Nuts',            emoji: '🌰' },
+=======
+  { id: 'crustacean_shellfish', label: 'Crustacean Shellfish', emoji: '🦐' },
+  { id: 'egg',                  label: 'Egg',                  emoji: '🥚' },
+  { id: 'fish',                 label: 'Fish',                 emoji: '🐟' },
+  { id: 'peanut',               label: 'Peanut',               emoji: '🥜' },
+  { id: 'soybean',              label: 'Soybean',              emoji: '🫘' },
+  { id: 'tree_nuts',            label: 'Tree Nuts',            emoji: '🌰' },
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
   { id: 'wheat',                label: 'Wheat',                emoji: '🌾' },
 ];
 
@@ -89,6 +108,11 @@ export type RootStackParamList = {
     imageUri: string;
   };
   Profile: { profile: { name: string; selectedAllergens: AllergenId[] } };
+<<<<<<< HEAD
   SafeResult: {stats: any};
   WarningResult: { detectedAllergens: AllergenId[]; stats: any};
+=======
+  SafeResult: undefined;
+  WarningResult: { detectedAllergens: AllergenId[] };
+>>>>>>> ae8b107b445097d51773b9d6331893603480563a
 };

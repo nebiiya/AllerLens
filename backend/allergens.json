@@ -1,0 +1,11 @@
+
+{
+    "milk": ["milk", "whey", "casein", "caseinate", "lactose", "butterfat"],
+    "peanuts": ["peanut", "peanuts", "arachis"],
+    "eggs": ["egg", "eggs", "albumin", "ovomucoid"],
+    "soybeans": ["soybean","soybeans", "soy", "soya"],
+    "wheat": ["wheat", "gluten", "farina", "graham", "semolina"],
+    "fish": ["fish", "cod", "salmon", "tuna"],
+    "tree nuts": ["almond", "brazil nut", "cashew", "hazelnut", "macadamia", "pecan", "pistachio", "walnut"],
+    "Crustacean shellfish": ["crab", "lobster", "shrimp", "prawn", "crayfish"]
+}

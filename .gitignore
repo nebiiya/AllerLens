@@ -1,0 +1,18 @@
+# OS Generated Files
+.DS_Store
+Thumbs.db
+
+# Frontend (React/Node)
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.env
+frontend/.expo/
+
+# Backend (Python)
+__pycache__/
+*.py[cod]
+backend/venv/
+backend/env/
+.env
+.pytest_cache/

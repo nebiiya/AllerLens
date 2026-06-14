@@ -30,7 +30,6 @@
           "cameraPermission": "AllerLens needs camera access to scan ingredient labels."
         }
       ]
-      //"expo-status-bar"
     ]
   }
 }

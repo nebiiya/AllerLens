@@ -33,8 +33,9 @@ def process_allergen_image(image_path):
     # 2. Extract raw text using Tesseract 
     raw_text = pytesseract.image_to_string(img) # Scan the image pixels -> translates to a single, long text string
 
+    # Error checking/test
     print("\n--- WHAT TESSERACT SEES ---")
-    print(raw_text) # Make sure this matches your actual variable name!
+    print(raw_text) 
     print("---------------------------\n")
 
     # 3. Preprocessing: Clean the text

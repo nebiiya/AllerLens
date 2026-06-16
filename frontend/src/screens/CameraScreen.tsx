@@ -25,7 +25,7 @@
  *  - expo-image-picker    (gallery access)
  */
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -35,16 +35,16 @@ import {
   SafeAreaView,
   Alert,
   ActivityIndicator,
-} from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Colors from '../theme/colors';
-import { RootStackParamList } from '../types';
-import BottomTabBar from '../components/BottomTabBar';
+} from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import Colors from "../theme/colors";
+import { RootStackParamList } from "../types";
+import BottomTabBar from "../components/BottomTabBar";
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Camera'>;
+type Props = NativeStackScreenProps<RootStackParamList, "Camera">;
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
@@ -65,28 +65,28 @@ const CameraScreen: React.FC<Props> = ({ navigation, route }) => {
 
       if (!permission.granted) {
         Alert.alert(
-          'Camera Access Required',
-          'Please allow camera access in your device settings to use this feature.',
+          "Camera Access Required",
+          "Please allow camera access in your device settings to use this feature.",
         );
         return;
       }
 
       const result = await ImagePicker.launchCameraAsync({
-        mediaTypes: ['images'],  // v16+ API — replaces deprecated MediaTypeOptions.Images
-        quality: 0.85,           // Balance between quality and file size
-        allowsEditing: true,     // Let user crop before proceeding
+        mediaTypes: ["images"], // v16+ API — replaces deprecated MediaTypeOptions.Images
+        quality: 0.85, // Balance between quality and file size
+        allowsEditing: true, // Let user crop before proceeding
         aspect: [4, 3],
       });
 
       if (!result.canceled && result.assets.length > 0) {
         // Navigate to processing with the captured image URI
-        navigation.navigate('Processing', {
+        navigation.navigate("Processing", {
           profile,
           imageUri: result.assets[0].uri,
         });
       }
     } catch (error) {
-      Alert.alert('Error', 'Could not open camera. Please try again.');
+      Alert.alert("Error", "Could not open camera. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -99,31 +99,32 @@ const CameraScreen: React.FC<Props> = ({ navigation, route }) => {
   const handleUploadFromGallery = async () => {
     setIsLoading(true);
     try {
-      const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      const permission =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
 
       if (!permission.granted) {
         Alert.alert(
-          'Gallery Access Required',
-          'Please allow photo library access in your device settings.',
+          "Gallery Access Required",
+          "Please allow photo library access in your device settings.",
         );
         return;
       }
 
       const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ['images'],  // v16+ API — replaces deprecated MediaTypeOptions.Images
+        mediaTypes: ["images"], // v16+ API — replaces deprecated MediaTypeOptions.Images
         quality: 0.85,
         allowsEditing: true,
         aspect: [4, 3],
       });
 
       if (!result.canceled && result.assets.length > 0) {
-        navigation.navigate('Processing', {
+        navigation.navigate("Processing", {
           profile,
           imageUri: result.assets[0].uri,
         });
       }
     } catch (error) {
-      Alert.alert('Error', 'Could not open gallery. Please try again.');
+      Alert.alert("Error", "Could not open gallery. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -131,10 +132,10 @@ const CameraScreen: React.FC<Props> = ({ navigation, route }) => {
 
   /** Bottom tab handler — navigates away from Camera if another tab is tapped */
   const handleTabPress = (tab: string) => {
-    if (tab === 'home') {
-      navigation.navigate('Home', { profile });
-    } else if (tab === 'profile') {
-      navigation.navigate('Profile', { profile });
+    if (tab === "home") {
+      navigation.navigate("Home", { profile });
+    } else if (tab === "profile") {
+      navigation.navigate("Profile", { profile });
     }
   };
 
@@ -163,7 +164,6 @@ const CameraScreen: React.FC<Props> = ({ navigation, route }) => {
 
         {/* ── Action Buttons ────────────────────────────────────────────── */}
         <View style={styles.buttonsContainer}>
-
           {/* Option 1: Camera */}
           <TouchableOpacity
             style={styles.actionButton}
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 24,
-    fontWeight: '800',
+    fontWeight: "800",
     color: Colors.textLight,
     marginBottom: 8,
   },
@@ -226,14 +226,14 @@ const styles = StyleSheet.create({
   // Image preview box
   previewBox: {
     flex: 1,
-    backgroundColor: '#2C3B3D',
+    backgroundColor: "#2C3B3D",
     borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginBottom: 28,
     borderWidth: 2,
     borderColor: Colors.inputDark,
-    borderStyle: 'dashed',
+    borderStyle: "dashed",
   },
   previewIcon: {
     fontSize: 48,
@@ -251,8 +251,8 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   actionButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: Colors.teal,
     borderRadius: 14,
     paddingVertical: 16,
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
   buttonLabel: {
     color: Colors.textLight,
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 });
 

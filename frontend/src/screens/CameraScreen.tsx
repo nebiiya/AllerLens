@@ -73,7 +73,7 @@ const CameraScreen: React.FC<Props> = ({ navigation, route }) => {
 
       const result = await ImagePicker.launchCameraAsync({
         mediaTypes: ["images"], // v16+ API — replaces deprecated MediaTypeOptions.Images
-        quality: 0.85, // Balance between quality and file size
+        quality: 0.3, // Balance between quality and file size
         allowsEditing: true, // Let user crop before proceeding
         aspect: [4, 3],
       });

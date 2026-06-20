@@ -14,7 +14,11 @@
       "package": "com.allerlens.app",
       "adaptiveIcon": {
         "backgroundColor": "#F8F4EB"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "plugins": [
       [
@@ -30,6 +34,11 @@
           "cameraPermission": "AllerLens needs camera access to scan ingredient labels."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "b462d12e-12b0-4938-84b2-518492f969df"
+      }
+    }
   }
 }

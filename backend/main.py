@@ -1,6 +1,14 @@
+import os
 import json
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# Check if the OS is windows ('nt')
+if os.name == 'nt':
+    # Runs only on machine with Tesseract OCR installed (for expo go testing)
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+else:
+    # On Linux (Render), this skips the Windows path and uses the native Tesseract installation
+    pass
+
 from PIL import Image
 import re
 

@@ -15,26 +15,25 @@
  *  Splash → CreateProfile
  */
 
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   StyleSheet,
   StatusBar,
-} from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Colors from '../theme/colors';
-import { RootStackParamList } from '../types';
+} from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import Colors from "../theme/colors";
+import { RootStackParamList } from "../types";
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Splash'>;
+type Props = NativeStackScreenProps<RootStackParamList, "Splash">;
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const SplashScreen: React.FC<Props> = ({ navigation }) => {
-
   /**
    * Auto-advance to the next screen after 2 seconds.
    * The timer is cleared when the component unmounts to prevent
@@ -42,7 +41,7 @@ const SplashScreen: React.FC<Props> = ({ navigation }) => {
    */
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('CreateProfile');
+      navigation.replace("CreateProfile");
     }, 2000);
 
     return () => clearTimeout(timer);
@@ -50,7 +49,7 @@ const SplashScreen: React.FC<Props> = ({ navigation }) => {
 
   /** Allow the user to tap anywhere to skip the timer and advance immediately */
   const handleSkip = () => {
-    navigation.replace('CreateProfile');
+    navigation.replace("CreateProfile");
   };
 
   return (
@@ -92,11 +91,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.cream,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   logoContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     gap: 12,
   },
 
@@ -107,8 +106,8 @@ const styles = StyleSheet.create({
     borderRadius: 45,
     borderWidth: 4,
     borderColor: Colors.teal,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   lensInner: {
     width: 45,
@@ -118,14 +117,14 @@ const styles = StyleSheet.create({
     borderColor: Colors.teal,
   },
   crossH: {
-    position: 'absolute',
+    position: "absolute",
     width: 90,
     height: 2,
     backgroundColor: Colors.teal,
     opacity: 0.4,
   },
   crossV: {
-    position: 'absolute',
+    position: "absolute",
     width: 2,
     height: 90,
     backgroundColor: Colors.teal,
@@ -135,7 +134,7 @@ const styles = StyleSheet.create({
   // Text
   wordmark: {
     fontSize: 28,
-    fontWeight: '800',
+    fontWeight: "800",
     color: Colors.dark,
     letterSpacing: 4,
   },
@@ -145,7 +144,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
   },
   hint: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 40,
     fontSize: 12,
     color: Colors.textMuted,

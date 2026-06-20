@@ -14,7 +14,7 @@
  *  Splash → CreateProfile → EnterName (passes selectedAllergens[])
  */
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -23,20 +23,19 @@ import {
   StyleSheet,
   StatusBar,
   SafeAreaView,
-} from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Colors from '../theme/colors';
-import { ALLERGENS, AllergenId, RootStackParamList } from '../types';
-import AllergenBadge from '../components/AllergenBadge';
+} from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import Colors from "../theme/colors";
+import { ALLERGENS, AllergenId, RootStackParamList } from "../types";
+import AllergenBadge from "../components/AllergenBadge";
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 
-type Props = NativeStackScreenProps<RootStackParamList, 'CreateProfile'>;
+type Props = NativeStackScreenProps<RootStackParamList, "CreateProfile">;
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const CreateProfileScreen: React.FC<Props> = ({ navigation }) => {
-
   /**
    * Track which allergens the user has selected.
    * Using a Set provides O(1) lookup for the selected state of each badge.
@@ -61,7 +60,7 @@ const CreateProfileScreen: React.FC<Props> = ({ navigation }) => {
 
   /** Submit navigates to EnterName, passing the selection as a plain array */
   const handleSubmit = () => {
-    navigation.navigate('EnterName', {
+    navigation.navigate("EnterName", {
       selectedAllergens: Array.from(selected),
     });
   };
@@ -101,7 +100,10 @@ const CreateProfileScreen: React.FC<Props> = ({ navigation }) => {
       {/* ── Submit Button ─────────────────────────────────────────────── */}
       <View style={styles.footer}>
         <TouchableOpacity
-          style={[styles.submitButton, !canSubmit && styles.submitButtonDisabled]}
+          style={[
+            styles.submitButton,
+            !canSubmit && styles.submitButtonDisabled,
+          ]}
           onPress={handleSubmit}
           disabled={!canSubmit}
           activeOpacity={0.8}
@@ -131,12 +133,12 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     color: Colors.textLight,
-    fontWeight: '400',
+    fontWeight: "400",
   },
   titleBold: {
     fontSize: 26,
     color: Colors.teal,
-    fontWeight: '800',
+    fontWeight: "800",
     marginBottom: 8,
   },
   subtitle: {
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.teal,
     borderRadius: 14,
     paddingVertical: 16,
-    alignItems: 'center',
+    alignItems: "center",
   },
   submitButtonDisabled: {
     backgroundColor: Colors.inputDark,
@@ -169,7 +171,7 @@ const styles = StyleSheet.create({
   submitText: {
     color: Colors.textLight,
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: "700",
     letterSpacing: 0.5,
   },
 });

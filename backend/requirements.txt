@@ -1,0 +1,10 @@
+# Core Framework
+Flask==3.0.0 
+flask-cors==4.0.0
+
+# OCR and Imaging 
+pytesseract==0.3.10 
+Pillow==10.2.0
+
+# Production Server (Required for Render)
+gunicorn==21.2.0

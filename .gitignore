@@ -3,7 +3,7 @@
 Thumbs.db
 
 # Frontend (React/Node)
-frontend/node_modules/
+node_modules/
 frontend/build/
 frontend/dist/
 frontend/.env

@@ -19,7 +19,7 @@
  *  - profile: { name, selectedAllergens }
  */
 
-import React from 'react';
+import React from "react";
 import {
   View,
   Text,
@@ -27,15 +27,15 @@ import {
   StyleSheet,
   StatusBar,
   SafeAreaView,
-} from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Colors from '../theme/colors';
-import { RootStackParamList } from '../types';
-import BottomTabBar from '../components/BottomTabBar';
+} from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import Colors from "../theme/colors";
+import { RootStackParamList } from "../types";
+import BottomTabBar from "../components/BottomTabBar";
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
@@ -47,7 +47,7 @@ const HomeScreen: React.FC<Props> = ({ navigation, route }) => {
    * CameraScreen and downstream screens know which allergens to check.
    */
   const goToCamera = () => {
-    navigation.navigate('Camera', { profile });
+    navigation.navigate("Camera", { profile });
   };
 
   /**
@@ -55,10 +55,10 @@ const HomeScreen: React.FC<Props> = ({ navigation, route }) => {
    * 'home' is no-op (already here), others navigate to their screens.
    */
   const handleTabPress = (tab: string) => {
-    if (tab === 'camera') {
-      navigation.navigate('Camera', { profile });
-    } else if (tab === 'profile') {
-      navigation.navigate('Profile', { profile });
+    if (tab === "camera") {
+      navigation.navigate("Camera", { profile });
+    } else if (tab === "profile") {
+      navigation.navigate("Profile", { profile });
     }
     // 'home' — already on this screen, do nothing
   };
@@ -76,7 +76,7 @@ const HomeScreen: React.FC<Props> = ({ navigation, route }) => {
           {/* Profile avatar shortcut */}
           <TouchableOpacity
             style={styles.avatarBtn}
-            onPress={() => navigation.navigate('Profile', { profile })}
+            onPress={() => navigation.navigate("Profile", { profile })}
             accessibilityLabel="View your profile"
           >
             <Text style={styles.avatarInitial}>
@@ -96,7 +96,6 @@ const HomeScreen: React.FC<Props> = ({ navigation, route }) => {
 
         {/* ── Action Cards ─────────────────────────────────────────────── */}
         <View style={styles.cardsContainer}>
-
           {/* Card 1: Scan Ingredients List (camera / text) */}
           <TouchableOpacity
             style={styles.card}
@@ -118,7 +117,7 @@ const HomeScreen: React.FC<Props> = ({ navigation, route }) => {
           {/* Card 2: Upload an Image from gallery */}
           <TouchableOpacity
             style={styles.card}
-            onPress={goToCamera}   // CameraScreen handles both modes
+            onPress={goToCamera} // CameraScreen handles both modes
             activeOpacity={0.85}
             accessibilityRole="button"
             accessibilityLabel="Upload an image from gallery"
@@ -156,14 +155,14 @@ const styles = StyleSheet.create({
 
   // Top bar
   topBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: 32,
   },
   wordmark: {
     fontSize: 20,
-    fontWeight: '800',
+    fontWeight: "800",
     color: Colors.dark,
     letterSpacing: 2,
   },
@@ -172,12 +171,12 @@ const styles = StyleSheet.create({
     height: 38,
     borderRadius: 19,
     backgroundColor: Colors.teal,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   avatarInitial: {
     color: Colors.textLight,
-    fontWeight: '700',
+    fontWeight: "700",
     fontSize: 16,
   },
 
@@ -187,12 +186,12 @@ const styles = StyleSheet.create({
   },
   greeting: {
     fontSize: 18,
-    fontWeight: '350',
+    fontWeight: "400",
     color: Colors.textMuted,
   },
   userName: {
     fontSize: 32,
-    fontWeight: '800',
+    fontWeight: "800",
     color: Colors.dark,
     marginBottom: 6,
   },
@@ -206,8 +205,8 @@ const styles = StyleSheet.create({
     gap: 16,
   },
   card: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     backgroundColor: Colors.teal,
     borderRadius: 16,
     padding: 18,
@@ -221,18 +220,18 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: "700",
     color: Colors.textLight,
     marginBottom: 3,
   },
   cardDesc: {
     fontSize: 12,
-    color: 'rgba(255,255,255,0.75)',
+    color: "rgba(255,255,255,0.75)",
   },
   cardArrow: {
     fontSize: 24,
     color: Colors.textLight,
-    fontWeight: '300',
+    fontWeight: "300",
   },
 });
 

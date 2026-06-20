@@ -19,11 +19,7 @@
  *  - profile: { name, selectedAllergens }
  */
 
-<<<<<<< HEAD
 import React from "react";
-=======
-import React from 'react';
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
 import {
   View,
   Text,
@@ -31,7 +27,6 @@ import {
   StyleSheet,
   StatusBar,
   SafeAreaView,
-<<<<<<< HEAD
 } from "react-native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Colors from "../theme/colors";
@@ -42,18 +37,6 @@ import BottomTabBar from "../components/BottomTabBar";
 // ── Props ─────────────────────────────────────────────────────────────────────
 
 type Props = NativeStackScreenProps<RootStackParamList, "Profile">;
-=======
-} from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Colors from '../theme/colors';
-import { RootStackParamList, ALLERGENS } from '../types';
-import AllergenBadge from '../components/AllergenBadge';
-import BottomTabBar from '../components/BottomTabBar';
-
-// ── Props ─────────────────────────────────────────────────────────────────────
-
-type Props = NativeStackScreenProps<RootStackParamList, 'Profile'>;
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
@@ -70,17 +53,10 @@ const ProfileScreen: React.FC<Props> = ({ navigation, route }) => {
 
   /** Bottom tab handler */
   const handleTabPress = (tab: string) => {
-<<<<<<< HEAD
     if (tab === "home") {
       navigation.navigate("Home", { profile });
     } else if (tab === "camera") {
       navigation.navigate("Camera", { profile });
-=======
-    if (tab === 'home') {
-      navigation.navigate('Home', { profile });
-    } else if (tab === 'camera') {
-      navigation.navigate('Camera', { profile });
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
     }
   };
 
@@ -106,25 +82,15 @@ const ProfileScreen: React.FC<Props> = ({ navigation, route }) => {
           </View>
           <Text style={styles.userName}>{profile.name}</Text>
           <Text style={styles.allergenCount}>
-<<<<<<< HEAD
             {userAllergens.length} allergen
             {userAllergens.length !== 1 ? "s" : ""} tracked
-=======
-            {userAllergens.length} allergen{userAllergens.length !== 1 ? 's' : ''} tracked
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
           </Text>
         </View>
 
         {/* ── Allergen List ─────────────────────────────────────────────── */}
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Your Allergens</Text>
-<<<<<<< HEAD
           <Text style={styles.sectionSubtitle}>Here are your allergens:</Text>
-=======
-          <Text style={styles.sectionSubtitle}>
-            Here are your allergens:
-          </Text>
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
         </View>
 
         <View style={styles.allergenList}>
@@ -132,11 +98,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation, route }) => {
             <AllergenBadge
               key={allergen.id}
               allergen={allergen}
-<<<<<<< HEAD
               selected // Always shown as "selected" (read-only teal)
-=======
-              selected   // Always shown as "selected" (read-only teal)
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
               variant="display"
             />
           ))}
@@ -144,11 +106,7 @@ const ProfileScreen: React.FC<Props> = ({ navigation, route }) => {
 
         {/* ── Reminder Banner ───────────────────────────────────────────── */}
         <View style={styles.reminderBanner}>
-<<<<<<< HEAD
           <Text style={styles.reminderTitle}>⚠️ REMINDER</Text>
-=======
-          <Text style={styles.reminderTitle}>⚠️  REMINDER</Text>
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
           <Text style={styles.reminderText}>
             Some allergens from your selected allergens to look out for. Be
             careful when you encounter any of these in your food — always
@@ -180,22 +138,14 @@ const styles = StyleSheet.create({
   },
   screenTitle: {
     fontSize: 25,
-<<<<<<< HEAD
     fontWeight: "800",
-=======
-    fontWeight: '800',
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
     color: Colors.dark,
     marginBottom: 20,
   },
 
   // Identity card
   identityCard: {
-<<<<<<< HEAD
     alignItems: "center",
-=======
-    alignItems: 'center',
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
     backgroundColor: Colors.dark,
     borderRadius: 20,
     paddingVertical: 28,
@@ -206,31 +156,18 @@ const styles = StyleSheet.create({
     height: 72,
     borderRadius: 36,
     backgroundColor: Colors.teal,
-<<<<<<< HEAD
     alignItems: "center",
     justifyContent: "center",
-=======
-    alignItems: 'center',
-    justifyContent: 'center',
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
     marginBottom: 12,
   },
   avatarText: {
     color: Colors.textLight,
     fontSize: 28,
-<<<<<<< HEAD
     fontWeight: "700",
   },
   userName: {
     fontSize: 20,
     fontWeight: "700",
-=======
-    fontWeight: '700',
-  },
-  userName: {
-    fontSize: 20,
-    fontWeight: '700',
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
     color: Colors.textLight,
     marginBottom: 4,
   },
@@ -245,11 +182,7 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 18,
-<<<<<<< HEAD
     fontWeight: "700",
-=======
-    fontWeight: '700',
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
     color: Colors.dark,
   },
   sectionSubtitle: {
@@ -272,20 +205,12 @@ const styles = StyleSheet.create({
   },
   reminderTitle: {
     color: Colors.textLight,
-<<<<<<< HEAD
     fontWeight: "800",
-=======
-    fontWeight: '800',
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
     fontSize: 16,
     marginBottom: 6,
   },
   reminderText: {
-<<<<<<< HEAD
     color: "rgba(255,255,255,0.9)",
-=======
-    color: 'rgba(255,255,255,0.9)',
->>>>>>> ae8b107b445097d51773b9d6331893603480563a
     fontSize: 14,
     lineHeight: 20,
   },

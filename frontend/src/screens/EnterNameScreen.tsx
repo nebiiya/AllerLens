@@ -17,7 +17,7 @@
  *  - selectedAllergens: AllergenId[] — chosen in the previous screen
  */
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -28,24 +28,23 @@ import {
   SafeAreaView,
   KeyboardAvoidingView,
   Platform,
-} from 'react-native';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Colors from '../theme/colors';
-import { RootStackParamList } from '../types';
+} from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import Colors from "../theme/colors";
+import { RootStackParamList } from "../types";
 
 // ── Props ─────────────────────────────────────────────────────────────────────
 
-type Props = NativeStackScreenProps<RootStackParamList, 'EnterName'>;
+type Props = NativeStackScreenProps<RootStackParamList, "EnterName">;
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const EnterNameScreen: React.FC<Props> = ({ navigation, route }) => {
-
   /** Allergens forwarded from CreateProfileScreen */
   const { selectedAllergens } = route.params;
 
   /** User's typed display name */
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>("");
 
   /**
    * Build the complete profile object and navigate to the Home screen.
@@ -55,7 +54,7 @@ const EnterNameScreen: React.FC<Props> = ({ navigation, route }) => {
     const trimmedName = name.trim();
     if (!trimmedName) return;
 
-    navigation.navigate('Home', {
+    navigation.navigate("Home", {
       profile: {
         name: trimmedName,
         selectedAllergens,
@@ -70,8 +69,8 @@ const EnterNameScreen: React.FC<Props> = ({ navigation, route }) => {
    * Shows up to 2 characters (first + last initial).
    */
   const getInitials = (): string => {
-    const parts = name.trim().split(' ').filter(Boolean);
-    if (parts.length === 0) return '👤';
+    const parts = name.trim().split(" ").filter(Boolean);
+    if (parts.length === 0) return "👤";
     if (parts.length === 1) return parts[0][0].toUpperCase();
     return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
   };
@@ -83,7 +82,7 @@ const EnterNameScreen: React.FC<Props> = ({ navigation, route }) => {
       {/* KeyboardAvoidingView pushes content up when the keyboard opens */}
       <KeyboardAvoidingView
         style={styles.container}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={20}
       >
         {/* ── Back Button ───────────────────────────────────────────────── */}
@@ -123,7 +122,10 @@ const EnterNameScreen: React.FC<Props> = ({ navigation, route }) => {
 
         {/* ── Proceed Button ────────────────────────────────────────────── */}
         <TouchableOpacity
-          style={[styles.proceedButton, !canProceed && styles.proceedButtonDisabled]}
+          style={[
+            styles.proceedButton,
+            !canProceed && styles.proceedButtonDisabled,
+          ]}
           onPress={handleProceed}
           disabled={!canProceed}
           activeOpacity={0.8}
@@ -148,11 +150,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 24,
-    justifyContent: 'center',
+    justifyContent: "center",
     gap: 28,
   },
   backButton: {
-    position: 'absolute',
+    position: "absolute",
     top: 16,
     left: 16,
   },
@@ -161,7 +163,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   avatarContainer: {
-    alignItems: 'center',
+    alignItems: "center",
     gap: 10,
   },
   avatar: {
@@ -169,15 +171,15 @@ const styles = StyleSheet.create({
     height: 100,
     borderRadius: 50,
     backgroundColor: Colors.teal,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderWidth: 3,
     borderColor: Colors.tealLight,
   },
   avatarText: {
     color: Colors.textLight,
     fontSize: 34,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   avatarHint: {
     color: Colors.textMuted,
@@ -189,7 +191,7 @@ const styles = StyleSheet.create({
   inputLabel: {
     color: Colors.textLight,
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   input: {
     backgroundColor: Colors.inputDark,
@@ -205,7 +207,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.teal,
     borderRadius: 14,
     paddingVertical: 16,
-    alignItems: 'center',
+    alignItems: "center",
   },
   proceedButtonDisabled: {
     backgroundColor: Colors.inputDark,
@@ -213,7 +215,7 @@ const styles = StyleSheet.create({
   proceedText: {
     color: Colors.textLight,
     fontSize: 16,
-    fontWeight: '700',
+    fontWeight: "700",
   },
 });
 

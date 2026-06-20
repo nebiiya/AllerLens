@@ -38,6 +38,9 @@ def process_allergen_image(image_path):
         print(f"Error: Image file not found.")
         return None
     
+    # Shrink the physical dimensions so it doesn't crash the server.
+    img.thumbnail((1024,1024))
+    
     # 2. Extract raw text using Tesseract 
     raw_text = pytesseract.image_to_string(img) # Scan the image pixels -> translates to a single, long text string
 

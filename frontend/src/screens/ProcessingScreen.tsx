@@ -78,7 +78,7 @@ const ProcessingScreen: React.FC<Props> = ({ navigation, route }) => {
 
       // Send request to backend API
       // IF DIRECT EXPO GO, REPLACE THIS IP ADDRESS WITH https://your-ipv4-address:5000, IF EXPO GO ONLY KEEP /SCAN AT END
-      const SERVER_URL = "https://womanhood-unread-reflex.ngrok-free.dev/scan";
+      const SERVER_URL = "https://allerlens.onrender.com/scan";
 
       const response = await fetch(SERVER_URL, {
         method: "POST",
